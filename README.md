@@ -15,6 +15,8 @@ font ：选项标题的字体
 取消 按钮字体请到.m文件自行设置。默认黑色-16号
      
     
+    NSArray *arrayTitle = @[@"我是第一个",@"我是第二个",@"我是第三个",@"我是第四个",@"我是第五个",@"我是第N..."];
+    
     //字体颜色  二选一 数组颜色/单个颜色
     NSArray *arrayColor = @[[UIColor redColor],[UIColor blueColor],[UIColor orangeColor],[UIColor blackColor],[UIColor grayColor],[UIColor greenColor]];
     UIColor *color = [UIColor orangeColor];
