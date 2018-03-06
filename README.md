@@ -5,13 +5,15 @@
 
 使用方法
 
-     /**
-     *  array ：弹出的选项标题
-     *  textColor ：选项标题的字体颜色 设置和标题对应的颜色数组(数量一致)或者单个颜色
-     *  font ：选项标题的字体
-     *  取消 按钮字体请到.m文件自行设置。默认黑色-16号
-     **/
-    
+   
+array ：弹出的选项标题
+     
+textColor ：选项标题的字体颜色 设置和标题对应的颜色数组(数量一致)或者单个颜色
+     
+font ：选项标题的字体
+     
+取消 按钮字体请到.m文件自行设置。默认黑色-16号
+     
     
     //字体颜色  二选一 数组颜色/单个颜色
     NSArray *arrayColor = @[[UIColor redColor],[UIColor blueColor],[UIColor orangeColor],[UIColor blackColor],[UIColor grayColor],[UIColor greenColor]];
