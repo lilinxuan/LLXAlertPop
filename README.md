@@ -5,7 +5,7 @@
 
 使用方法
 
-		 /**
+	 /**
      *  array ：弹出的选项标题
      *  textColor ：选项标题的字体颜色
      *  font ：选项标题的字体
@@ -18,5 +18,7 @@
         lab.text = [NSString stringWithFormat:@"%@,下标%ld",button.currentTitle,(long)didRow];
     }];
 		
-	
+		
+如果对您有用请右上角点个 star，谢谢咯~
+如发现bug请lssues我~
 	
