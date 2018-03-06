@@ -1,0 +1,7 @@
+platform :ios, '8.0'
+
+target’LLXAlertPop’ do
+
+pod 'pop', '~> 1.0'
+
+end
