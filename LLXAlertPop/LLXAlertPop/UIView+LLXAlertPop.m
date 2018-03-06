@@ -59,7 +59,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
         [bottomView addSubview:btn];
         [btn addTarget:self action:@selector(didTitleBtn:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget:self action:@selector(didTitleBtnHighlighted:) forControlEvents:UIControlEventTouchDown];
-
+        [btn addTarget:self action:@selector(didTitleBtnNormal:) forControlEvents:UIControlEventTouchDragExit];
         //关联 block
         objc_setAssociatedObject (btn , &keyOfMethod, actionBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
         if (i!=array.count-1) {
@@ -112,6 +112,10 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
         
     }];
     
+}
+-(void)didTitleBtnNormal:(UIButton*)btn{
+    
+    btn.backgroundColor = [UIColor clearColor];
 }
 -(void)didTitleBtnHighlighted:(UIButton*)btn{
     btn.backgroundColor = RGBA(239, 239, 239, 1);
