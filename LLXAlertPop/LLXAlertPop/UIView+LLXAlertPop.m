@@ -20,11 +20,11 @@ float height;
 static NSString *keyOfMethod; //关联者的索引key-用于获取block
 /**
  *  array ：弹出的选项标题
- *  textColor ：选项标题的字体颜色
+ *  textColor ：选项标题的字体颜色 设置和标题对应的数组颜色或者单个颜色
  *  font ：选项标题的字体
  *  取消 按钮字体请到.m文件自行设置。默认黑色-16号
  **/
--(void)createAlertViewTitleArray:(NSArray* _Nullable )array textColor:(UIColor*_Nullable)color font:(UIFont*_Nullable)font actionBlock:(LLXAlertBlock _Nullable )actionBlock{
+-(void)createAlertViewTitleArray:(NSArray* _Nullable )array textColor:(id)color font:(UIFont*_Nullable)font actionBlock:(LLXAlertBlock _Nullable )actionBlock{
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     
@@ -45,13 +45,15 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
     bottomView.backgroundColor = [UIColor whiteColor];
     [window addSubview:bottomView];
 
-    
+    NSArray *arrayColor;
+    UIColor *colors;
+   
     for (int i=0; i<array.count; i++) {
         
         UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, i*46, APPSIZE.width, 45)];
     
         [btn setTitle:array[i] forState:UIControlStateNormal];
-        [btn setTitleColor:color forState:UIControlStateNormal];
+       
         btn.tag = 10000+i;
         btn.titleLabel.font = font;
         [bottomView addSubview:btn];
@@ -65,7 +67,14 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
             line.backgroundColor = RGBA(230, 230, 230, 1);
             [bottomView addSubview:line];
         }
-        
+        //如果是数组颜色
+        if ([color isKindOfClass:[NSArray class]]) {
+            arrayColor = [NSArray arrayWithArray:color];
+            colors = arrayColor[i];
+        }else{
+            colors = (UIColor*)color;
+        }
+         [btn setTitleColor:colors forState:UIControlStateNormal];
         
     }
     
