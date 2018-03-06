@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void (^ActionBlock)(UIButton * _Nullable button,NSInteger didRow);
+typedef void (^LLXAlertBlock)(UIButton * _Nullable button,NSInteger didRow);
 @interface UIView (LLXAlertPop)
 
 /**
@@ -16,5 +16,5 @@ typedef void (^ActionBlock)(UIButton * _Nullable button,NSInteger didRow);
  *  font ：选项标题的字体
  *  取消 按钮字体请到.m文件自行设置。默认黑色-16号
  **/
--(void)createAlertViewTitleArray:(NSArray* _Nullable )array textColor:(UIColor*_Nullable)color font:(UIFont*_Nullable)font actionBlock:(ActionBlock _Nullable )actionBlock;
+-(void)createAlertViewTitleArray:(NSArray* _Nullable )array textColor:(UIColor*_Nullable)color font:(UIFont*_Nullable)font actionBlock:(LLXAlertBlock _Nullable )actionBlock;
 @end

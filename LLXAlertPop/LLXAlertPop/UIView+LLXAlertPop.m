@@ -24,7 +24,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
  *  font ：选项标题的字体
  *  取消 按钮字体请到.m文件自行设置。默认黑色-16号
  **/
--(void)createAlertViewTitleArray:(NSArray* _Nullable )array textColor:(UIColor*_Nullable)color font:(UIFont*_Nullable)font actionBlock:(ActionBlock _Nullable )actionBlock{
+-(void)createAlertViewTitleArray:(NSArray* _Nullable )array textColor:(UIColor*_Nullable)color font:(UIFont*_Nullable)font actionBlock:(LLXAlertBlock _Nullable )actionBlock{
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     
@@ -112,7 +112,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
     
     btn.backgroundColor = [UIColor clearColor];
     //获取关联
-    ActionBlock block1 = (ActionBlock)objc_getAssociatedObject(btn, &keyOfMethod);
+    LLXAlertBlock block1 = (LLXAlertBlock)objc_getAssociatedObject(btn, &keyOfMethod);
     if(block1){
         block1(btn,btn.tag-10000);
         [self didMiss];
