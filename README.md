@@ -1,16 +1,14 @@
 # LLXAlertPop
 ![image](https://github.com/lilinxuan/LLXAlertPop/blob/master/弹选项.gif)
 
-一个UIView的分类完成的弹出列表，使用简单一句代码直接调用
+UIView的分类完成的弹出列表，使用简单，一句代码直接调用
 
 使用方法
 
 
-     
-    //样式一（更多样式请下载demo）
-    
-    NSArray *arrayTitle = @[@"我是第一个",@"我是第二个"];
 
+    //样式一（更多样式请下载demo）
+    NSArray *arrayTitle = @[@"我是第一个",@"我是第二个"];
     UIColor *color = [UIColor blueColor];
     
     [self.view createAlertViewTitleArray:arrayTitle textColor:color font:[UIFont systemFontOfSize:16] actionBlock:^(UIButton * _Nullable button, NSInteger didRow) {
