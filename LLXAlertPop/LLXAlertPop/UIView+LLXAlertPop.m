@@ -42,7 +42,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
     touchDown.numberOfTapsRequired = 1;
     [backgroundV addGestureRecognizer:touchDown];
     
-    height = array.count*45+array.count*1+52;
+    height = array.count*45+array.count*0.5+52.5;
     
     bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, APPSIZE.height, APPSIZE.width, height+50)];
     bottomView.backgroundColor = [UIColor whiteColor];
@@ -53,7 +53,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
    
     for (int i=0; i<array.count; i++) {
         
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, i*46, APPSIZE.width, 45)];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, i*45+i*0.5, APPSIZE.width, 45)];
     
         [btn setTitle:array[i] forState:UIControlStateNormal];
       
@@ -79,7 +79,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
         //关联 block
         objc_setAssociatedObject (btn , &keyOfMethod, actionBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
         if (i!=array.count-1) {
-            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(btn.frame), APPSIZE.width, 1)];
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(btn.frame), APPSIZE.width, 0.5)];
             line.backgroundColor = RGBA(230, 230, 230, 1);
             [bottomView addSubview:line];
         }
@@ -98,7 +98,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
         
     }
     
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, array.count*46-1, APPSIZE.width, 8)];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, array.count*45.5-0.5, APPSIZE.width, 8)];
     line.backgroundColor = RGBA(239, 239, 239, 1);
     [bottomView addSubview:line];
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame), APPSIZE.width, 45)];
