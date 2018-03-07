@@ -8,6 +8,7 @@
 
      
     //样式一（更多样式请下载demo）
+    
     NSArray *arrayTitle = @[@"我是第一个",@"我是第二个"];
 
     UIColor *color = [UIColor blueColor];
