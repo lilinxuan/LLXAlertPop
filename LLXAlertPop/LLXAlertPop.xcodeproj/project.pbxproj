@@ -17,6 +17,8 @@
 		D4D41E1C204D4084006B024E /* LLXAlertPopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D41E1B204D4084006B024E /* LLXAlertPopTests.m */; };
 		D4D41E27204D4084006B024E /* LLXAlertPopUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D41E26204D4084006B024E /* LLXAlertPopUITests.m */; };
 		D4D41E39204D40C6006B024E /* UIView+LLXAlertPop.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D41E38204D40C6006B024E /* UIView+LLXAlertPop.m */; };
+		D4D41ED5204F6FFF006B024E /* zhifubao.png in Resources */ = {isa = PBXBuildFile; fileRef = D4D41ED3204F6FFE006B024E /* zhifubao.png */; };
+		D4D41ED6204F6FFF006B024E /* weixin.png in Resources */ = {isa = PBXBuildFile; fileRef = D4D41ED4204F6FFF006B024E /* weixin.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		D4D41E28204D4084006B024E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4D41E37204D40C6006B024E /* UIView+LLXAlertPop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LLXAlertPop.h"; sourceTree = "<group>"; };
 		D4D41E38204D40C6006B024E /* UIView+LLXAlertPop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LLXAlertPop.m"; sourceTree = "<group>"; };
+		D4D41ED3204F6FFE006B024E /* zhifubao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhifubao.png; sourceTree = "<group>"; };
+		D4D41ED4204F6FFF006B024E /* weixin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,8 @@
 			children = (
 				D4D41E02204D4083006B024E /* AppDelegate.h */,
 				D4D41E03204D4083006B024E /* AppDelegate.m */,
+				D4D41ED4204F6FFF006B024E /* weixin.png */,
+				D4D41ED3204F6FFE006B024E /* zhifubao.png */,
 				D4D41E37204D40C6006B024E /* UIView+LLXAlertPop.h */,
 				D4D41E38204D40C6006B024E /* UIView+LLXAlertPop.m */,
 				D4D41E05204D4083006B024E /* ViewController.h */,
@@ -273,6 +279,8 @@
 				D4D41E0F204D4083006B024E /* LaunchScreen.storyboard in Resources */,
 				D4D41E0C204D4083006B024E /* Assets.xcassets in Resources */,
 				D4D41E0A204D4083006B024E /* Main.storyboard in Resources */,
+				D4D41ED6204F6FFF006B024E /* weixin.png in Resources */,
+				D4D41ED5204F6FFF006B024E /* zhifubao.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

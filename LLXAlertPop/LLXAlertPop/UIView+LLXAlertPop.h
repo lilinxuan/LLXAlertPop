@@ -12,9 +12,12 @@ typedef void (^LLXAlertBlock)(UIButton * _Nullable button,NSInteger didRow);
 
 /**
  *  array ：弹出的选项标题
- *  textColor ：选项标题的字体颜色 设置和标题对应的数组颜色或者单个颜色
+ *  arrayImage ：数组图标，没有写nil
+ *  textColor ：选项标题的字体颜色 设置和标题对应的数组颜色或者单个颜色（NSArray/UIColor）
  *  font ：选项标题的字体
+ *  spacing ：文字与图片间距自行调试（无图片可填0）
  *  取消 按钮字体请到.m文件自行设置。默认黑色-16号
  **/
--(void)createAlertViewTitleArray:(NSArray* _Nullable )array textColor:(id _Nullable )color font:(UIFont*_Nullable)font actionBlock:(LLXAlertBlock _Nullable )actionBlock;
+-(void)createAlertViewTitleArray:(NSArray* _Nullable )array arrayImage:(NSArray* _Nullable )arrayImage textColor:(id _Nullable )color font:(UIFont*_Nullable)font spacing:(CGFloat)spacing actionBlock:(LLXAlertBlock _Nullable )actionBlock;
 @end
+

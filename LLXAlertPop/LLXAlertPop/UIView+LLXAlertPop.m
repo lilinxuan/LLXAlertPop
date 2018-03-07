@@ -9,6 +9,7 @@
 #import "UIView+LLXAlertPop.h"
 #import <objc/runtime.h>
 #import "pop/POP.h"
+
 #define APPSIZE [[UIScreen mainScreen] bounds].size
 #define RGBA(r,g,b,a)                     [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
@@ -20,11 +21,13 @@ float height;
 static NSString *keyOfMethod; //关联者的索引key-用于获取block
 /**
  *  array ：弹出的选项标题
- *  textColor ：选项标题的字体颜色 设置和标题对应的数组颜色或者单个颜色
+ *  arrayImage ：数组图标，没有写nil
+ *  textColor ：选项标题的字体颜色 设置和标题对应的数组颜色或者单个颜色（NSArray/UIColor）
  *  font ：选项标题的字体
+ *  spacing ：文字与图片间距自行调试（无图片可填0）
  *  取消 按钮字体请到.m文件自行设置。默认黑色-16号
  **/
--(void)createAlertViewTitleArray:(NSArray* _Nullable )array textColor:(id)color font:(UIFont*_Nullable)font actionBlock:(LLXAlertBlock _Nullable )actionBlock{
+-(void)createAlertViewTitleArray:(NSArray* _Nullable )array arrayImage:(NSArray* _Nullable )arrayImage textColor:(id _Nullable )color font:(UIFont*_Nullable)font spacing:(CGFloat)spacing actionBlock:(LLXAlertBlock _Nullable )actionBlock{
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     
@@ -53,7 +56,20 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
         UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, i*46, APPSIZE.width, 45)];
     
         [btn setTitle:array[i] forState:UIControlStateNormal];
-       
+      
+        
+        if (arrayImage) {
+            if (i>=arrayImage.count) {
+                NSLog(@"数组越界-数组图片数量有误，请仔细检查");
+                return;
+            }
+            [btn setImage:[UIImage imageNamed:arrayImage[i]] forState:UIControlStateNormal];
+            btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+            btn.imageEdgeInsets = UIEdgeInsetsMake(10, - 0.5 * spacing, 10, 0.5 * spacing);
+            btn.titleEdgeInsets = UIEdgeInsetsMake(0, 0.5 * spacing, 0, - 0.5 * spacing);
+        }
+        
+        
         btn.tag = 10000+i;
         btn.titleLabel.font = font;
         [bottomView addSubview:btn];
@@ -70,6 +86,10 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
         //如果是数组颜色
         if ([color isKindOfClass:[NSArray class]]) {
             arrayColor = [NSArray arrayWithArray:color];
+            if (i>=arrayColor.count) {
+                NSLog(@"数组越界-数组图片颜色数量有误，请仔细检查");
+                return;
+            }
             colors = arrayColor[i];
         }else{
             colors = (UIColor*)color;
