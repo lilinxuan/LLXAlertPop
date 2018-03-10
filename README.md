@@ -1,5 +1,5 @@
 # LLXAlertPop
-![image](https://github.com/lilinxuan/LLXAlertPop/blob/master/弹选项.gif)
+![image](https://github.com/lilinxuan/LLXAlertPop/blob/master/tan.gif)
 
 UIView的分类完成的弹出列表，使用简单，一句代码直接调用
 
