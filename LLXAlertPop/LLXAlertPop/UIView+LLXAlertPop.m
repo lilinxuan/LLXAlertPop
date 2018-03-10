@@ -60,7 +60,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
     touchDown.numberOfTapsRequired = 1;
     [backgroundV addGestureRecognizer:touchDown];
     
-    height = array.count*45+array.count*0.5+52.5;
+    height = array.count*50+array.count*0.5+57.5;
     
     bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, APPSIZE.height, APPSIZE.width, height+50)];
     bottomView.backgroundColor = [UIColor whiteColor];
@@ -71,7 +71,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
    
     for (int i=0; i<array.count; i++) {
         
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, i*45+i*0.5, APPSIZE.width, 45)];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, i*50+i*0.5, APPSIZE.width, 50)];
     
         [btn setTitle:array[i] forState:UIControlStateNormal];
       
@@ -92,8 +92,10 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
         btn.titleLabel.font = font;
         [bottomView addSubview:btn];
         [btn addTarget:self action:@selector(didTitleBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [btn addTarget:self action:@selector(didTitleBtnHighlighted:) forControlEvents:UIControlEventTouchDown];
-        [btn addTarget:self action:@selector(didTitleBtnNormal:) forControlEvents:UIControlEventTouchDragExit];
+        [btn addTarget:self action:@selector(didTitleBtnTouchDragInside:) forControlEvents:UIControlEventTouchDragInside];
+        [btn addTarget:self action:@selector(didTitleBtnTouchDragOutsid:) forControlEvents:UIControlEventTouchDragOutside];
+
+        
         //关联 block
         objc_setAssociatedObject (btn , &keyOfMethod, actionBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
         if (i!=array.count-1) {
@@ -116,16 +118,17 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
         
     }
     
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, array.count*45.5-0.5, APPSIZE.width, 8)];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, array.count*50.5-0.5, APPSIZE.width, 8)];
     line.backgroundColor = RGBA(239, 239, 239, 1);
     [bottomView addSubview:line];
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame), APPSIZE.width, 45)];
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame), APPSIZE.width, 50)];
     [btn setTitle:@"取消" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:16];
     [bottomView addSubview:btn];
     [btn addTarget:self action:@selector(didMiss) forControlEvents:UIControlEventTouchUpInside];
-    
+    [btn addTarget:self action:@selector(didTitleBtnTouchDragInside:) forControlEvents:UIControlEventTouchDragInside];
+    [btn addTarget:self action:@selector(didTitleBtnTouchDragOutsid:) forControlEvents:UIControlEventTouchDragOutside];
     /**
      如果您项目中没有pop动画库，或者您不想引入pop库，请注释掉pop动画和头文件， 并且打开下面的注释
     
@@ -151,12 +154,13 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
     }];
     
 }
--(void)didTitleBtnNormal:(UIButton*)btn{
+
+-(void)didTitleBtnTouchDragOutsid:(UIButton*)btn{
     
     btn.backgroundColor = [UIColor clearColor];
 }
--(void)didTitleBtnHighlighted:(UIButton*)btn{
-    btn.backgroundColor = RGBA(239, 239, 239, 1);
+-(void)didTitleBtnTouchDragInside:(UIButton*)btn{
+    btn.backgroundColor = RGBA(245, 245, 245, 1);
 }
 //点击事件
 -(void)didTitleBtn:(UIButton*)btn{
