@@ -83,7 +83,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
             }
             [btn setImage:[UIImage imageNamed:arrayImage[i]] forState:UIControlStateNormal];
             btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-            btn.imageEdgeInsets = UIEdgeInsetsMake(10, - 0.5 * spacing, 10, 0.5 * spacing);
+            btn.imageEdgeInsets = UIEdgeInsetsMake(12, - 0.5 * spacing, 12, 0.5 * spacing);
             btn.titleEdgeInsets = UIEdgeInsetsMake(0, 0.5 * spacing, 0, - 0.5 * spacing);
         }
         
@@ -127,8 +127,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
     btn.titleLabel.font = [UIFont systemFontOfSize:16];
     [bottomView addSubview:btn];
     [btn addTarget:self action:@selector(didMiss) forControlEvents:UIControlEventTouchUpInside];
-    [btn addTarget:self action:@selector(didTitleBtnTouchDragInside:) forControlEvents:UIControlEventTouchDragInside];
-    [btn addTarget:self action:@selector(didTitleBtnTouchDragOutsid:) forControlEvents:UIControlEventTouchDragOutside];
+   
     /**
      如果您项目中没有pop动画库，或者您不想引入pop库，请注释掉pop动画和头文件， 并且打开下面的注释
     
