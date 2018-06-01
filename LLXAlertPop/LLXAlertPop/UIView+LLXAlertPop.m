@@ -13,6 +13,14 @@
 #define APPSIZE [[UIScreen mainScreen] bounds].size
 #define RGBA(r,g,b,a)                     [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
+//判断如果是iPhone X
+#define IS_IPHONE_X ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )812 ) < DBL_EPSILON )
+#define IOS11_OR_LATER_SPACE(par)({ float space = 0.0;if (@available(iOS 11.0, *)) space = par;(space);})
+
+#define BOTTOM_SPACE34or0  IOS11_OR_LATER_SPACE([UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom)
+
+
+
 @implementation UIView (LLXAlertPop)
 UIView *backgroundV;
 UIView *bottomView;
@@ -52,7 +60,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
     
     backgroundV = [[UIView alloc]initWithFrame:window.bounds];
     backgroundV.backgroundColor = RGBA(0, 0, 0, 0);
-
+    
     [window addSubview:backgroundV];
     
     //点击手势
@@ -60,21 +68,21 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
     touchDown.numberOfTapsRequired = 1;
     [backgroundV addGestureRecognizer:touchDown];
     
-    height = array.count*50+array.count*0.5+57.5;
+    height = array.count*50+array.count*0.5+57.5+BOTTOM_SPACE34or0;
     
     bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, APPSIZE.height, APPSIZE.width, height+50)];
     bottomView.backgroundColor = [UIColor whiteColor];
     [window addSubview:bottomView];
-
+    
     NSArray *arrayColor;
     UIColor *colors;
-   
+    
     for (int i=0; i<array.count; i++) {
         
         UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, i*50+i*0.5, APPSIZE.width, 50)];
-    
+        
         [btn setTitle:array[i] forState:UIControlStateNormal];
-      
+        
         
         if (arrayImage) {
             if (i>=arrayImage.count) {
@@ -94,7 +102,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
         [btn addTarget:self action:@selector(didTitleBtn:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget:self action:@selector(didTitleBtnTouchDragInside:) forControlEvents:UIControlEventTouchDragInside];
         [btn addTarget:self action:@selector(didTitleBtnTouchDragOutsid:) forControlEvents:UIControlEventTouchDragOutside];
-
+        
         
         //关联 block
         objc_setAssociatedObject (btn , &keyOfMethod, actionBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -114,7 +122,7 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
         }else{
             colors = (UIColor*)color;
         }
-         [btn setTitleColor:colors forState:UIControlStateNormal];
+        [btn setTitleColor:colors forState:UIControlStateNormal];
         
     }
     
@@ -127,21 +135,32 @@ static NSString *keyOfMethod; //关联者的索引key-用于获取block
     btn.titleLabel.font = [UIFont systemFontOfSize:16];
     [bottomView addSubview:btn];
     [btn addTarget:self action:@selector(didMiss) forControlEvents:UIControlEventTouchUpInside];
-   
+    
+    if (IS_IPHONE_X) {
+        UIView *lineB = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(btn.frame), APPSIZE.width, 0.5)];
+        lineB.backgroundColor = RGBA(235, 235, 235, 1);
+        [bottomView addSubview:lineB];
+    }
     /**
      如果您项目中没有pop动画库，或者您不想引入pop库，请注释掉pop动画和头文件， 并且打开下面的注释
+     
+     */
+    //普通动画
     
-    */
-    //无动画
-//    [UIView animateWithDuration:0.3 animations:^{
-//        bottomView.frame = CGRectMake(0, APPSIZE.height-height, APPSIZE.width, height);
-//    }];
+    //    [UIView animateWithDuration:0.2 animations:^{
+    //        bottomView.frame = CGRectMake(0, APPSIZE.height-height-8, APPSIZE.width, height);
+    //    } completion:^(BOOL finished) {
+    //        [UIView animateWithDuration:0.2 animations:^{
+    //            bottomView.frame = CGRectMake(0, APPSIZE.height-height, APPSIZE.width, height);
+    //        }];
+    //
+    //    }];
     
     // pop动画
     POPSpringAnimation *anSpring = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
     anSpring.toValue = @(bottomView.center.y-height);
     anSpring.springBounciness = 7.0f;
-//    anSpring.springSpeed = 10.0f;
+    //    anSpring.springSpeed = 10.0f;
     [bottomView pop_addAnimation:anSpring forKey:@"position"];
     
     
